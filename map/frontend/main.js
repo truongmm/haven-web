@@ -28,13 +28,23 @@ function renderInfo(map, graphicsLayer, data, markerType) {
 
     var graphic = new Graphic(point, marker);
     graphicsLayer.add(graphic);
+
     if (markerType == "disasters") {
+      map.infoWindow.setContent(formatContent(data));
+      map.centerAt(point);
+
       $(".alert .disaster").on("click", function(){
-        // map.infoWindow.setTitle(data.name);
-        map.infoWindow.setContent(formatContent(data));
         map.infoWindow.show(point);
-        map.centerAt(point);
       });
+      $("#graphicsLayer1_layer").on("click", function(){
+        if (map.infoWindow.isShowing) {
+          map.infoWindow.hide();
+        }
+        else {
+          map.infoWindow.show(point);
+        }
+      });
+
     }
   });
 }
