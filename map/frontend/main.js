@@ -23,11 +23,9 @@ function renderInfo(map, graphicsLayer, data, addClickEvent) {
 
     var graphic = new Graphic(point, marker);
     graphicsLayer.add(graphic);
-
-    map.infoWindow.setTitle(data.name);
-
     if (addClickEvent) {
-      $("#alert .disaster").on("click", function(){
+      $(".alert .disaster").on("click", function(){
+        map.infoWindow.setTitle(data.name);
         map.infoWindow.show(point);
         map.centerAndZoom(point, 13)
       });
@@ -69,9 +67,9 @@ function initialize(){
     // Map is centered on the city of San Francisco
     map = new Map("map", {
       basemap: "topo",
-      center: [-122.45, 37.75], // longitude, latitude
+      center: [-122.409031,37.7621001],
       infoWindow: infoWindow,
-      zoom: 12
+      zoom: 13
     });
 
     // Initialize graphics layer

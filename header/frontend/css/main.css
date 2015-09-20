@@ -1,0 +1,47 @@
+#header {
+  background-color: #E53935;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: auto;
+}
+
+#header .circle-image {
+  background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/10463008_837713909608986_4519871738767559280_n.jpg?oh=fbfcd3d972cbbbcedc4f42a8d86ea7e8&oe=56A75056&__gda__=1449617456_a46a442005235b749a274be695bccea0) no-repeat;
+}
+
+#header .title {
+  float: left;
+  margin: 18px;
+}
+
+#header .user {
+  float: right;
+  margin: 6px 10px 0px;
+}
+
+#header .user .name {
+  float: right;
+  font-size: 18px;
+  margin: 12px 10px 10px 5px;
+}
+
+.circle-image {
+  background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p50x50/1514577_10153228121864365_3517421961297479282_n.jpg?oh=de3288e44511fed619f536892b572ca1&oe=56A985CE&__gda__=1454111729_d6f56983234c923669becd317754cfe5) no-repeat;
+  border: 1px solid white;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+  -moz-box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+  float: left;
+  height: 44px;
+  margin-right: 5px;
+  width: 44px;
+}
+
+.circle-image img {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}

@@ -8,14 +8,44 @@
     <!-- Esri ArcGIS css import -->
     <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
 
+    <link rel="stylesheet" href="header/frontend/css/main.css"/>
     <link rel="stylesheet" href="map/frontend/css/main.css"/>
   </head>
 
   <body>
+    <div id="header">
+      <div class="title">Haven</div>
+      <div class="user">
+        <div class ="circle-image"></div>
+        <div class="name">Melody Truong</div>
+      </div>
+    </div>
     <div id="map"></div>
-    <div id="alert">
-      <a class="user" href="https://www.facebook.com/nguyen.katherine19">Kathy Nguyen</a> just checked in to
-      <span class="disaster">TCCrunch SF Fire</span>
+
+    <div class="alerts">
+      <div class="alert">
+        <div class="close">X</div>
+        <div class ="circle-image"></div>
+        <a class="user" href="https://www.facebook.com/nguyen.katherine19">Kathy Nguyen</a> and
+        <a class="user" href="https://www.facebook.com/heyyyjay">Jay Tolentino</a> are victims at the
+        <span class="disaster">SF TechCrunch Hackathon...</span>
+        <div class="time">1:19am</div>
+      </div>
+
+      <div class="alert">
+        <div class="close">X</div>
+        <div class ="circle-image"></div>
+        <a class="user" href="https://www.facebook.com/heyyyjay">Jay Tolentino</a> is reported <b>injured</b> at the
+        <span class="disaster">SF TechCrunch Hackathon Fire</span>.
+        <div class="time">1:19am</div>
+      </div>
+
+      <div class="alert">
+        <div class="close">X</div>
+        <div class ="circle-image"></div>
+        <a class="user" href="https://www.facebook.com/nguyen.katherine19">Kathy Nguyen</a> reported a need for <b>Medical Attention</b>.
+        <div class="time">1:19am</div>
+      </div>
     </div>
 
     <!-- jQuery import -->

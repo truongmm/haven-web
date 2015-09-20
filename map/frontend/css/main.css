@@ -10,20 +10,45 @@ body {
   font-family: "Trebuchet MS";
 }
 
-#alert {
-  background-color: rgba(255, 0, 0, 0.5);;
-  bottom: 30px;
-  font-size: 20px;
-  height: 100px;
-  padding: 20px;
+.alerts {
   position: absolute;
-  right: 30px;
+  right: 15px;
+  top: 75px;
+}
+
+.alert {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 15px 10px 15px 5px;
   width: 300px;
 }
 
-#alert a,
-#alert span {
+.alert a,
+.alert span {
   color: black;
   font-weight: bold;
   text-decoration: none
+}
+
+.alert .close {
+  font-size: 10px;
+  float: right;
+  margin: -5px 0 0 10px;
+}
+
+.alert .disaster {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.alert .time {
+  color: gray;
+}
+
+.alert .user {
+  cursor: pointer
 }
