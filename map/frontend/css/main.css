@@ -10,6 +10,10 @@ body {
   font-family: "Trebuchet MS";
 }
 
+#map_zoom_slider {
+  display: none;
+}
+
 .alerts {
   position: absolute;
   right: 15px;
@@ -22,6 +26,7 @@ body {
   border-radius: 5px;
   font-size: 12px;
   margin-bottom: 10px;
+  overflow: auto;
   padding: 15px 10px 15px 5px;
   width: 300px;
 }
@@ -45,10 +50,135 @@ body {
   text-decoration: underline;
 }
 
-.alert .time {
+.alert .log {
+  margin-top: 2px;
+}
+
+.alert .log img {
+  float: left;
+}
+
+.alert .log .time {
   color: gray;
+  float: left;
+  margin: 2px 0 0 5px;
 }
 
 .alert .user {
   cursor: pointer
+}
+
+.esriPopup .actions {
+  border-top: 1px solid #DDD;
+  margin-top: 10px;
+  overflow: auto;
+  padding-top: 7px;
+  width: 80px;
+}
+
+.esriPopup .actions .button {
+  color: red;
+  float: left;
+  font-size: 9px;
+}
+
+.esriPopup .actions .share {
+  margin-right: 13px;
+}
+
+.esriPopup .actions .share.button {
+  margin-right: 9px;
+}
+
+.esriPopup .actions img {
+  float: left;
+  height: 30px;
+  width: 30px;
+}
+
+.esriPopup .actionsPane {
+  padding: 0;
+}
+
+.esriPopup .contentPane {
+  padding: 0;
+}
+
+.esriPopup .image {
+  float: left;
+  padding: 10px;
+}
+
+.esriPopup .image .thumbnail {
+  height: 70px;
+  width: 80px;
+}
+
+.esriPopup .info {
+  background-color: #DDD;
+  float: left;
+  height: 150px;
+  padding: 10px 10px 0 10px;
+  width: 155px;
+}
+
+.esriPopup .info .count {
+  clear: both;
+  margin-left: -5px;
+}
+
+.esriPopup .info .count-info {
+  float: left;
+  margin-top: 5px;
+}
+
+.esriPopup .info .desc {
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.esriPopup .info .title {
+  font-size: 1.1em;
+  margin-bottom: 2px;
+}
+
+.esriPopup .info .user {
+  border-top: 1px solid #888;
+  color: blue;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.esriPopup .info img {
+  float: left;
+  height: 30px;
+}
+
+.esriPopup .sizer {
+  width: 280px;
+}
+
+.options {
+  background-color: white;
+  border: 1px solid #CCC;
+  border-radius: 2px;
+  left: 15px;
+  position: absolute;
+  top: 75px;
+  width: 200px;
+}
+
+.options img {
+  float: left;
+  margin: 10px;
+}
+
+.options .arrow {
+  float: right;
+  margin: 10px;
+}
+
+.option {
+  float: left;
+  padding: 10px 0;
 }

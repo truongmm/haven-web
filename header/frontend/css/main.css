@@ -6,6 +6,11 @@
   overflow: auto;
 }
 
+#header img {
+  float: right;
+  margin: 15px 10px 0 5px;
+}
+
 #header .circle-image {
   background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/10463008_837713909608986_4519871738767559280_n.jpg?oh=fbfcd3d972cbbbcedc4f42a8d86ea7e8&oe=56A75056&__gda__=1449617456_a46a442005235b749a274be695bccea0) no-repeat;
 }

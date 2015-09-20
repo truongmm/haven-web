@@ -1,7 +1,7 @@
 var map;
 var API_BASE_URL = "http://haven-api.herokuapp.com/api/"
 
-function renderInfo(map, graphicsLayer, data, addClickEvent) {
+function renderInfo(map, graphicsLayer, data, markerType) {
   require([
     "esri/graphic",
     "esri/symbols/PictureMarkerSymbol",
@@ -14,23 +14,49 @@ function renderInfo(map, graphicsLayer, data, addClickEvent) {
       "longitude": parseFloat(data.long)
     });
 
+    var markerIcons = {
+      "disasters": "map/frontend/images/map_marker_disaster.png",
+      "shelters": "map/frontend/images/map_marker_shelter.png"
+    }
+
     // Initialize marker
     var marker = new PictureMarkerSymbol({
       "height": 36,
-      "url": "http://www2.psd100.com/ppp/2013/11/0501/Map-marker-icon-1105213652.png",
+      "url": markerIcons[markerType],
       "width": 36
     });
 
     var graphic = new Graphic(point, marker);
     graphicsLayer.add(graphic);
-    if (addClickEvent) {
+    if (markerType == "disasters") {
       $(".alert .disaster").on("click", function(){
-        map.infoWindow.setTitle(data.name);
+        // map.infoWindow.setTitle(data.name);
+        map.infoWindow.setContent(formatContent(data));
         map.infoWindow.show(point);
-        map.centerAndZoom(point, 13)
+        map.centerAt(point);
       });
     }
   });
+}
+
+function formatContent(data){
+  return "<div class='content'>" + 
+    "<div class='info'>" +
+      "<div class='title'>" + data.name + "</div>" +
+      "<div class='desc'>Building Fire</div>" +
+      "<div class='count'><img src='map/frontend/images/person_gray.png' /><div class='count-info'>" + data.totalCheckIns + " Checked In</div></div>" +
+      "<div class='count'><img src='map/frontend/images/side_medical.png' /><div class='count-info'>" + data.totalInjured + " Injured</div></div>" +
+      "<div style='clear: both;'></div><div class='user'>Kathy Nguyen</div>" +
+    "</div>" +
+    "<div class='image'>" +
+      "<img class='thumbnail' src='http://www.imagesource.com/Doc/IS0/Media/TR5/e/2/b/a/IS099ZP7C.jpg' />" +
+      "<div class='actions'>" +
+        "<img class='share' src='map/frontend/images/share_red.png' />" +
+        "<img class='volunteer' src='map/frontend/images/volunteer_red.png' />" +
+        "<div class='share button'>Share</div><div class='button'>Volunteer</div>"
+      "</div>" +
+    "</div>" +
+  "</div>";
 }
 
 function addMarker(map, graphicsLayer, markerType){
@@ -40,8 +66,7 @@ function addMarker(map, graphicsLayer, markerType){
     "url": API_BASE_URL + markerType,
     "success": function(data) {
       data = data[markerType][0];
-      var addClickEvent = markerType == "disasters";
-      renderInfo(map, graphicsLayer, data, addClickEvent);
+      renderInfo(map, graphicsLayer, data, markerType);
     }
   });
 }
@@ -61,7 +86,7 @@ function initialize(){
     // Initialize info window
     var fill = new SimpleFillSymbol("solid", null, new Color("#A4CE67"));
     var infoWindow = new Popup({
-        fillSymbol: fill
+        "fillSymbol": fill
     }, domConstruct.create("div"));
 
     // Map is centered on the city of San Francisco
