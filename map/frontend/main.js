@@ -1,37 +1,50 @@
 var map;
+var API_BASE_URL = "http://haven-api.herokuapp.com/api/"
 
-function renderDisasterInfo(map, point) {
-  map.infoWindow.setTitle("TCDisrupt SF Fire");
-  map.infoWindow.setContent("HELPPP");
-
-  $("#alert .disaster").on("click", function(){
-    map.infoWindow.show(point);
-  });
-}
-
-function addDisasterMarker(map, graphicsLayer){
+function renderInfo(map, graphicsLayer, data, addClickEvent) {
   require([
     "esri/graphic",
     "esri/symbols/PictureMarkerSymbol",
     "esri/geometry/Point"
   ],
   function(Graphic, PictureMarkerSymbol, Point) {
-    // Disaster is SF Public Library: Potrero Branch
-    var disasterPoint = new Point({
-      "latitude": 37.7605734,
-      "longitude": -122.3937939
+    // Coordinates for marker
+    var point = new Point({
+      "latitude": parseFloat(data.lat),
+      "longitude": parseFloat(data.long)
     });
 
-    // Initialize disaster marker
-    var disasterMarker = new PictureMarkerSymbol({
+    // Initialize marker
+    var marker = new PictureMarkerSymbol({
       "height": 36,
       "url": "http://www2.psd100.com/ppp/2013/11/0501/Map-marker-icon-1105213652.png",
       "width": 36
     });
-    var disasterGraphic = new Graphic(disasterPoint, disasterMarker);
 
-    graphicsLayer.add(disasterGraphic);
-    renderDisasterInfo(map, disasterPoint);
+    var graphic = new Graphic(point, marker);
+    graphicsLayer.add(graphic);
+
+    map.infoWindow.setTitle(data.name);
+
+    if (addClickEvent) {
+      $("#alert .disaster").on("click", function(){
+        map.infoWindow.show(point);
+        map.centerAndZoom(point, 13)
+      });
+    }
+  });
+}
+
+function addMarker(map, graphicsLayer, markerType){
+  $.ajax({
+    "crossOrigin": true,
+    "dataType": "json",
+    "url": API_BASE_URL + markerType,
+    "success": function(data) {
+      data = data[markerType][0];
+      var addClickEvent = markerType == "disasters";
+      renderInfo(map, graphicsLayer, data, addClickEvent);
+    }
   });
 }
 
@@ -65,8 +78,9 @@ function initialize(){
     var graphicsLayer = new GraphicsLayer();
     map.addLayer(graphicsLayer);
 
-    // Add disaster marker to map
-    addDisasterMarker(map, graphicsLayer);
+    // Add markers to map
+    addMarker(map, graphicsLayer, "disasters");
+    addMarker(map, graphicsLayer, "shelters");
   });
 }
 
